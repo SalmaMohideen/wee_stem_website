@@ -83,7 +83,7 @@ body {
     cursor: default;
 }
 
-.nav-link:hover {
+.nav-link:hover:not(.active) {
     color: #6a9a23;
 }
 
@@ -93,6 +93,15 @@ body {
 
 /* Active/Selected Menu Item */
 .nav-link.active {
+    color: var(--orange) !important;
+}
+
+.dropdown-link.active {
+    color: var(--orange);
+    background-color: rgba(138, 192, 46, 0.1);
+}
+
+.dropdown.has-active .nav-link {
     color: var(--orange);
 }
 

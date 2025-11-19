@@ -6,29 +6,46 @@ function setActiveMenuItem() {
     // Remove .html extension and normalize
     const pageName = currentPage.replace('.html', '').toLowerCase();
     
-    // Map page names to data-page values
-    const pageMap = {
-        'index': 'home',
-        '': 'home',
-        'welcome': 'welcome',
-        'our-classes': 'our-classes',
-        'about-us': 'about-us'
-    };
-    
-    // Get the current page identifier
-    const currentPageId = pageMap[pageName] || 'home';
-    
-    // Remove active class from all nav links
+    // Remove active class from all nav links and dropdown links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.classList.remove('active');
     });
     
-    // Add active class to the current page's nav link
-    const activeLink = document.querySelector(`.nav-link[data-page="${currentPageId}"]`);
-    if (activeLink) {
-        activeLink.classList.add('active');
+    const dropdownLinks = document.querySelectorAll('.dropdown-link');
+    dropdownLinks.forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Remove has-active class from all dropdowns
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('has-active');
+    });
+    
+    // Handle different pages
+    if (pageName === 'index' || pageName === '') {
+        // Home page
+        const homeLink = document.querySelector('.nav-link[data-page="home"]');
+        if (homeLink) homeLink.classList.add('active');
+    } else if (pageName === 'contact') {
+        // Contact page
+        const contactLink = document.querySelector('.nav-link[href="contact.html"]');
+        if (contactLink) contactLink.classList.add('active');
+    } else if (pageName === 'wee-explorers' || pageName === 'junior-tinkerers') {
+        // Our Classes sub-pages
+        const dropdown = document.querySelector('.dropdown .nav-link[data-page="our-classes"]').closest('.dropdown');
+        if (dropdown) dropdown.classList.add('has-active');
+        const activeSubLink = document.querySelector(`.dropdown-link[href="${pageName}.html"]`);
+        if (activeSubLink) activeSubLink.classList.add('active');
+    } else if (pageName === 'our-team' || pageName === 'our-mission') {
+        // About Us sub-pages
+        const dropdown = document.querySelector('.dropdown .nav-link[data-page="about-us"]').closest('.dropdown');
+        if (dropdown) dropdown.classList.add('has-active');
+        const activeSubLink = document.querySelector(`.dropdown-link[href="${pageName}.html"]`);
+        if (activeSubLink) activeSubLink.classList.add('active');
     }
+    // For other pages (our-classes, about-us), the HTML already has the correct active states
 }
 
 // Run when DOM is loaded
