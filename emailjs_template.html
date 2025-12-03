@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Submission</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background-color: #2B84CE; padding: 30px 20px; text-align: center;">
+                            <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: bold;">New Contact Form Submission</h1>
+                        </td>
+                    </tr>
+                    
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 30px 20px;">
+                            <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+                                You have received a new message from your website contact form.
+                            </p>
+                            
+                            <!-- Name Field -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 20px;">
+                                <tr>
+                                    <td style="padding: 0;">
+                                        <strong style="color: #2B84CE; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">Name:</strong>
+                                        <p style="color: #333333; font-size: 16px; margin: 0; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #8AC02E; border-radius: 4px;">
+                                            {{from_name}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Email Field -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px; border-bottom: 1px solid #e0e0e0; padding-bottom: 20px;">
+                                <tr>
+                                    <td style="padding: 0;">
+                                        <strong style="color: #2B84CE; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">Email:</strong>
+                                        <p style="color: #333333; font-size: 16px; margin: 0; padding: 10px; background-color: #f9f9f9; border-left: 3px solid #8AC02E; border-radius: 4px;">
+                                            <a href="mailto:{{from_email}}" style="color: #2B84CE; text-decoration: none;">{{from_email}}</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Message Field -->
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                                <tr>
+                                    <td style="padding: 0;">
+                                        <strong style="color: #2B84CE; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 8px;">Message:</strong>
+                                        <p style="color: #333333; font-size: 16px; line-height: 1.6; margin: 0; padding: 15px; background-color: #f9f9f9; border-left: 3px solid #8AC02E; border-radius: 4px; white-space: pre-wrap;">
+                                            {{message}}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f9f9f9; padding: 20px; text-align: center; border-top: 1px solid #e0e0e0;">
+                            <p style="color: #666666; font-size: 12px; margin: 0; line-height: 1.5;">
+                                This email was sent from the contact form on your WeeCode website.<br>
+                                Reply directly to this email or contact: <a href="mailto:{{from_email}}" style="color: #2B84CE;">{{from_email}}</a>
+                            </p>
+                            <p style="color: #999999; font-size: 11px; margin: 10px 0 0 0;">
+                                reCAPTCHA Token: {{recaptcha_token}}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+
