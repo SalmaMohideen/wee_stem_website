@@ -79,10 +79,22 @@ const MIN_SUBMISSION_INTERVAL = 10000; // 10 seconds between submissions
 function handleContactForm() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
+        // Check if EmailJS is loaded
+        if (typeof emailjs === 'undefined') {
+            console.error('EmailJS SDK is not loaded. Please check if the script is included in the HTML.');
+            alert('Email service is not available. Please refresh the page and try again.');
+            return;
+        }
+        
         // Initialize EmailJS
-        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-        // Get this from https://dashboard.emailjs.com/admin/integration
-        emailjs.init('CmxHrGPa2C8-37paz');
+        try {
+            emailjs.init('CmxHrGPa2C8-37paz');
+            console.log('EmailJS initialized successfully');
+        } catch (initError) {
+            console.error('EmailJS initialization error:', initError);
+            alert('Email service initialization failed. Please refresh the page and try again.');
+            return;
+        }
         
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -155,18 +167,24 @@ function handleContactForm() {
                 }
                 
                 // Send email using EmailJS
-                // IMPORTANT: Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID' with your actual IDs
-                // See setup instructions in SECURITY.md
+                // Template variables must match exactly what's in your EmailJS template
+                // Your template uses: {{name}} and {{email}} (for reply-to)
+                const templateParams = {
+                    name: name,        // Maps to {{name}} in template
+                    email: email,      // Maps to {{email}} in template (used for reply-to)
+                    message: message   // Maps to {{message}} in template
+                };
+                
+                // Only add recaptcha_token if you've configured it as a template variable
+                // If your template doesn't use it, remove this line
+                if (recaptchaToken) {
+                    templateParams.recaptcha_token = recaptchaToken;
+                }
+                
                 const response = await emailjs.send(
                     'service_vo1rad4',  // EmailJS Service ID
                     'template_gqq8oj2', // EmailJS Template ID
-                    {
-                        from_name: name,
-                        from_email: email,
-                        message: message,
-                        to_email: 'weestemboston@gmail.com',
-                        recaptcha_token: recaptchaToken // Include reCAPTCHA token in email (for logging/verification)
-                    }
+                    templateParams
                 );
                 
                 // Success
@@ -175,8 +193,23 @@ function handleContactForm() {
                 lastSubmissionTime = Date.now();
                 
             } catch (error) {
-                console.error('EmailJS Error:', error);
-                alert('Sorry, there was an error sending your message. Please try again later or email us directly at weestemboston@gmail.com');
+                // Log detailed error information
+                console.error('EmailJS Error Details:', {
+                    message: error.text || error.message,
+                    status: error.status,
+                    fullError: error
+                });
+                
+                // Provide more helpful error message
+                let errorMessage = 'Sorry, there was an error sending your message. ';
+                if (error.text) {
+                    errorMessage += `Error: ${error.text}. `;
+                } else if (error.message) {
+                    errorMessage += `Error: ${error.message}. `;
+                }
+                errorMessage += 'Please try again later or email us directly at weestemboston@gmail.com';
+                
+                alert(errorMessage);
             } finally {
                 // Re-enable submit button
                 submitButton.disabled = false;
@@ -186,10 +219,34 @@ function handleContactForm() {
     }
 }
 
+// Wait for EmailJS to be fully loaded before initializing
+function waitForEmailJS(callback, maxAttempts = 50) {
+    let attempts = 0;
+    const checkInterval = setInterval(() => {
+        attempts++;
+        if (typeof emailjs !== 'undefined' && emailjs.init) {
+            clearInterval(checkInterval);
+            callback();
+        } else if (attempts >= maxAttempts) {
+            clearInterval(checkInterval);
+            console.error('EmailJS failed to load after maximum attempts');
+        }
+    }, 100);
+}
+
 // Run when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     setActiveMenuItem();
-    handleContactForm();
+    
+    // Wait for EmailJS to load before setting up the form
+    if (document.getElementById('contactForm')) {
+        waitForEmailJS(() => {
+            handleContactForm();
+        });
+    } else {
+        // If there's no contact form, just set up menu
+        handleContactForm(); // Will return early if no form
+    }
 });
 
 // Also run on page navigation (for single-page apps or if using history API)
