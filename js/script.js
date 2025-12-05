@@ -82,7 +82,7 @@ function handleContactForm() {
         // Initialize EmailJS
         // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
         // Get this from https://dashboard.emailjs.com/admin/integration
-        emailjs.init('YOUR_PUBLIC_KEY');
+        emailjs.init('CmxHrGPa2C8-37paz');
         
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();

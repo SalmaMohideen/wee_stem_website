@@ -54,6 +54,6 @@ The HTML template includes:
 ## After Setting Up
 
 1. **Copy your Template ID** from EmailJS dashboard
-2. **Update `js/script.js`** - replace `'YOUR_TEMPLATE_ID'` with your actual Template ID
+2. **Update `js/script.js`** - replace `'template_gqq80j2'` with your actual Template ID
 3. **Test the form** on your website!
 
