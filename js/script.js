@@ -168,11 +168,14 @@ function handleContactForm() {
                 
                 // Send email using EmailJS
                 // Template variables must match exactly what's in your EmailJS template
-                // Your template uses: {{name}} and {{email}} (for reply-to)
+                // Template uses: {{name}}, {{email}}, {{title}}, {{from_name}}, {{from_email}}, {{message}}
                 const templateParams = {
-                    name: name,        // Maps to {{name}} in template
-                    email: email,      // Maps to {{email}} in template (used for reply-to)
-                    message: message   // Maps to {{message}} in template
+                    name: name,                    // Maps to {{name}} in template (From Name)
+                    email: email,                  // Maps to {{email}} in template (Reply To)
+                    title: 'Contact Form Submission', // Maps to {{title}} in template (Subject)
+                    from_name: name,               // Maps to {{from_name}} in template (Content)
+                    from_email: email,             // Maps to {{from_email}} in template (Content)
+                    message: message               // Maps to {{message}} in template (Content)
                 };
                 
                 // Only add recaptcha_token if you've configured it as a template variable
@@ -194,20 +197,24 @@ function handleContactForm() {
                 
             } catch (error) {
                 // Log detailed error information
-                console.error('EmailJS Error Details:', {
-                    message: error.text || error.message,
-                    status: error.status,
-                    fullError: error
+                console.error('EmailJS Error Details:', error);
+                console.error('Error Status:', error.status);
+                console.error('Error Text:', error.text);
+                console.error('Error Message:', error.message);
+                console.error('Template Params Sent:', {
+                    name: name,
+                    email: email,
+                    message: message.substring(0, 50) + '...'
                 });
                 
                 // Provide more helpful error message
                 let errorMessage = 'Sorry, there was an error sending your message. ';
                 if (error.text) {
-                    errorMessage += `Error: ${error.text}. `;
+                    errorMessage += `\n\nError: ${error.text}`;
                 } else if (error.message) {
-                    errorMessage += `Error: ${error.message}. `;
+                    errorMessage += `\n\nError: ${error.message}`;
                 }
-                errorMessage += 'Please try again later or email us directly at weestemboston@gmail.com';
+                errorMessage += '\n\nPlease check the browser console (F12) for more details, or email us directly at weestemboston@gmail.com';
                 
                 alert(errorMessage);
             } finally {
