@@ -184,8 +184,13 @@ function handleContactForm() {
                     templateParams.recaptcha_token = recaptchaToken;
                 }
                 
+                // Debug: Log what we're sending
+                console.log('Sending to EmailJS with params:', templateParams);
+                console.log('Service ID: service_ys0ubqg');
+                console.log('Template ID: template_gqq8oj2');
+                
                 const response = await emailjs.send(
-                    'service_vo1rad4',  // EmailJS Service ID
+                    'service_ys0ubqg',  // EmailJS Service ID
                     'template_gqq8oj2', // EmailJS Template ID
                     templateParams
                 );
