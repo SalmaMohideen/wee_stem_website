@@ -185,9 +185,12 @@ function handleContactForm() {
                 }
                 
                 // Debug: Log what we're sending
-                console.log('Sending to EmailJS with params:', templateParams);
-                console.log('Service ID: service_ys0ubqg');
-                console.log('Template ID: template_gqq8oj2');
+                console.log('=== EmailJS Request Details ===');
+                console.log('Service ID:', 'service_ys0ubqg');
+                console.log('Template ID:', 'template_gqq8oj2');
+                console.log('Public Key:', 'CmxHrGPa2C8-37paz');
+                console.log('Template Params:', templateParams);
+                console.log('==============================');
                 
                 const response = await emailjs.send(
                     'service_ys0ubqg',  // EmailJS Service ID
