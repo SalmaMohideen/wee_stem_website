@@ -269,3 +269,76 @@ window.addEventListener('popstate', function() {
     setActiveMenuItem();
 });
 
+// Handle Footer Signup Form (Google Forms Integration)
+function handleFooterSignup() {
+    const footerForm = document.getElementById('footerSignupForm');
+    const messageDiv = document.getElementById('footerSignupMessage');
+    
+    if (!footerForm) return;
+    
+    footerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('footerEmail');
+        const email = emailInput.value.trim();
+        const submitBtn = footerForm.querySelector('.footer-signup-btn');
+        
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            messageDiv.textContent = 'Please enter a valid email address.';
+            messageDiv.className = 'footer-signup-message error';
+            return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing up...';
+        
+        // Google Form details
+        const formId = '1FAIpQLScKp5W0wjlv_mXxRw06LeJz-C9Vo2xX3gluBafHGO0Kdy7GDA';
+        const entryId = 'entry.3701556';
+        
+        // Create a hidden iframe to submit the form (bypasses CORS)
+        const iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe_' + Date.now();
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        
+        // Create a temporary form to submit
+        const tempForm = document.createElement('form');
+        tempForm.method = 'POST';
+        tempForm.action = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
+        tempForm.target = iframe.name;
+        
+        // Add email input
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = entryId;
+        input.value = email;
+        tempForm.appendChild(input);
+        
+        document.body.appendChild(tempForm);
+        
+        // Submit the form
+        tempForm.submit();
+        
+        // Clean up and show success after a short delay
+        setTimeout(function() {
+            document.body.removeChild(tempForm);
+            document.body.removeChild(iframe);
+            
+            messageDiv.textContent = 'Thanks for signing up! We\'ll keep you updated.';
+            messageDiv.className = 'footer-signup-message success';
+            emailInput.value = '';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign Up';
+        }, 1000);
+    });
+}
+
+// Initialize footer signup on all pages
+document.addEventListener('DOMContentLoaded', function() {
+    handleFooterSignup();
+});
+

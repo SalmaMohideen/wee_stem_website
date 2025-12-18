@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.emailjs.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://www.gstatic.com; connect-src 'self' https://api.emailjs.com https://www.google.com https://docs.google.com; frame-src https://www.google.com https://docs.google.com; form-action 'self' https://docs.google.com;">
     <title>WeeCode - Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Cormorant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Calistoga&family=Comfortaa:wght@300;400;500;600;700&family=Cormorant:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&family=Fredoka:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Grandstander:wght@100;200;300;400;500;600;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdrRSAsAAAAABsYBNrtHtHgg5k8af_yRdEBkRR5"></script>
 </head>
 <body>
     <header class="main-header">
@@ -52,16 +56,16 @@
         <section class="signup-section">
             <div class="course-boxes">
                 <div class="course-box">
-                    <h3 class="course-title orange">Wee Explorers (Ages 5-7):</h3>
-                    <p class="course-description">learn the basics!</p>
+                    <h3 class="course-title orange">Wee Explorers</h3>
+                    <p class="course-ages">(Ages 5-7)</p>
                     <a href="wee-explorers.html" class="signup-btn">
                         sign up
                         <span class="arrow">→</span>
                     </a>
                 </div>
                 <div class="course-box">
-                    <h3 class="course-title orange">Junior Tinkerers (Ages 8-10)</h3>
-                    <p class="course-description">master the fundamentals!</p>
+                    <h3 class="course-title orange">Junior Tinkerers</h3>
+                    <p class="course-ages">(Ages 8-10)</p>
                     <a href="junior-tinkerers.html" class="signup-btn">
                         sign up
                         <span class="arrow">→</span>
@@ -70,6 +74,33 @@
             </div>
         </section>
     </main>
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="images/logo_no_background_full.png" alt="Wee STEM Boston Logo" class="footer-logo-img">
+                </a>
+            </div>
+            <div class="footer-nav">
+                <ul class="footer-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="our-team.html">Our Team</a></li>
+                    <li><a href="wee-explorers.html">Wee Explorers</a></li>
+                    <li><a href="our-mission.html">Our Mission</a></li>
+                    <li><a href="junior-tinkerers.html">Junior Tinkerers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-signup">
+                <h3 class="footer-signup-title">Stay in touch, be the first to know about programs!</h3>
+                <form class="footer-signup-form" id="footerSignupForm">
+                    <input type="email" id="footerEmail" name="email" class="footer-email-input" placeholder="Enter your email" required>
+                    <button type="submit" class="footer-signup-btn">Sign Up</button>
+                </form>
+                <div class="footer-signup-message" id="footerSignupMessage"></div>
+            </div>
+        </div>
+    </footer>
     <script src="js/script.js"></script>
 </body>
 </html>

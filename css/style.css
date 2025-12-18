@@ -267,7 +267,7 @@ main > .mission-section {
     border-radius: 8px;
     padding: 2rem;
     position: relative;
-    margin-top: 4rem;
+    margin-top: 5rem;
 }
 
 .week-header {
@@ -278,7 +278,7 @@ main > .mission-section {
     margin-bottom: 0;
     text-align: left;
     position: absolute;
-    top: -3rem;
+    top: -3.5rem;
     left: 0;
 }
 
@@ -537,10 +537,11 @@ main > .mission-section {
 }
 
 .hero-text {
-    font-family: 'Adobe Caslon Pro', 'Caslon', 'Cormorant', 'Times New Roman', Times, serif;
+    font-family: 'Calistoga', serif;
+    font-weight: 400;
     font-size: 143px;
     line-height: 1.2;
-    color: #000;
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -553,7 +554,7 @@ main > .mission-section {
 .hero-line-large {
     display: block;
     font-size: 143px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1;
     text-align: center;
     width: 100%;
@@ -562,7 +563,7 @@ main > .mission-section {
 .hero-line-small {
     display: block;
     font-size: 80px;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 1;
     text-align: center;
     width: 100%;
@@ -571,11 +572,11 @@ main > .mission-section {
 .hero-line-white {
     display: block;
     font-size: 160px;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1;
     text-align: center;
     width: 100%;
-    color: #ffffff;
+    color: var(--orange);
 }
 
 .hero-line-code {
@@ -630,7 +631,7 @@ main > .mission-section {
     border-radius: 8px;
     padding: 2.5rem;
     flex: 1;
-    min-width: 500px;
+    min-width: 550px;
     max-width: 1000px;
     width: 100%;
     display: flex;
@@ -650,14 +651,22 @@ main > .mission-section {
 
 .course-title {
     font-family: 'Calistoga', serif;
-    font-size: 32px;
+    font-size: 44px;
     font-weight: 400;
     margin-bottom: 1rem;
     white-space: nowrap;
 }
 
 .course-title.orange {
-    color: var(--orange);
+    color: var(--blue);
+}
+
+.course-ages {
+    font-family: 'Cormorant', serif;
+    font-size: 36px;
+    color: #000;
+    margin-bottom: 1.5rem;
+    margin-top: -0.5rem;
 }
 
 .course-description {
@@ -829,14 +838,29 @@ main > .mission-section {
 }
 
 /* Contact Page Styles */
+.contact-form-container {
+    max-width: 600px;
+    margin: 3rem auto 0 auto;
+    padding: 2rem;
+}
+
 .contact-intro {
     max-width: 1000px;
-    margin: 2rem auto 3rem auto;
+    margin: 3rem auto 3rem auto;
     padding: 0 2rem;
     text-align: center;
 }
 
+.contact-intro h2 {
+    font-family: 'Calistoga', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+}
+
 .contact-intro p {
+    font-family: 'Cormorant', serif;
     font-size: 18px;
     line-height: 1.8;
     color: #333;
@@ -872,7 +896,6 @@ main > .mission-section {
     margin-right: auto;
 }
 
-.contact-form-container,
 .contact-info-container {
     padding: 2rem;
 }
@@ -937,12 +960,13 @@ main > .mission-section {
     font-size: 24px;
     border-radius: 6px;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     transition: all 0.3s ease;
     width: fit-content;
-    margin-top: 0.5rem;
+    margin: 0.5rem auto 0 auto;
 }
 
 .contact-submit-btn:hover:not(:disabled),
@@ -1036,6 +1060,141 @@ main > .mission-section {
     
     .contact-info-text {
         font-size: 20px;
+    }
+}
+
+/* Footer Styles */
+.main-footer {
+    background-color: #f8f8f8;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    border-top: 3px solid var(--green);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo-img {
+    width: 150px;
+    height: auto;
+}
+
+.footer-nav-title,
+.footer-signup-title {
+    font-family: 'Calistoga', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--orange);
+    margin-bottom: 1rem;
+}
+
+.footer-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+}
+
+.footer-nav-links li {
+    margin-bottom: 0;
+}
+
+.footer-nav-links a {
+    font-family: 'Cormorant', serif;
+    font-size: 20px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-nav-links a:hover {
+    color: var(--blue);
+}
+
+.footer-signup-title {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.footer-signup-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.footer-email-input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    font-family: 'Cormorant', serif;
+    font-size: 18px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+
+.footer-email-input:focus {
+    border-color: var(--blue);
+}
+
+.footer-signup-btn {
+    padding: 0.6rem 1.5rem;
+    font-family: 'Calistoga', serif;
+    font-size: 16px;
+    background-color: var(--orange);
+    color: #fff;
+    border: 2px solid var(--orange);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-signup-btn:hover {
+    background-color: #fff;
+    color: var(--orange);
+}
+
+.footer-signup-message {
+    margin-top: 0.5rem;
+    font-family: 'Cormorant', serif;
+    font-size: 14px;
+}
+
+.footer-signup-message.success {
+    color: var(--green);
+}
+
+.footer-signup-message.error {
+    color: #e74c3c;
+}
+
+/* Footer Responsive */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .footer-signup-form {
+        flex-direction: column;
+    }
+    
+    .footer-signup-btn {
+        width: 100%;
     }
 }
 
