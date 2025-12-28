@@ -31,8 +31,9 @@ body {
 }
 
 .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     padding: 1rem 2rem;
     display: flex;
     align-items: center;
@@ -166,10 +167,10 @@ body {
 /* Main Content */
 main {
     min-height: calc(100vh - 100px);
-    padding: 2rem;
+    padding: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 main > .content {
@@ -521,13 +522,39 @@ main > .mission-section {
     justify-content: center;
     padding: 4rem 2rem;
     min-height: 60vh;
+    gap: 2rem;
+    position: relative;
+}
+
+.hero-images-left,
+.hero-images-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.hero-images-left {
+    align-items: flex-end;
+}
+
+.hero-images-right {
+    align-items: flex-start;
+}
+
+.hero-side-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .hero-box {
     background-color: var(--green);
     padding: 6rem 8rem;
     border-radius: 12px;
-    width: 90%;
+    flex: 1;
     max-width: 1200px;
     text-align: center;
     display: flex;
@@ -606,8 +633,9 @@ main > .mission-section {
 /* Sign Up Section */
 .signup-section {
     padding: 2rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .signup-header {
@@ -620,20 +648,24 @@ main > .mission-section {
 
 .course-boxes {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     align-items: stretch;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 4rem 6rem;
 }
 
 .course-box {
     border: 2px solid #999;
     border-radius: 8px;
     padding: 2.5rem;
-    flex: 1;
-    min-width: 550px;
-    max-width: 1000px;
-    width: 100%;
+    flex: 1 1 calc(33.333% - 2rem);
+    min-width: 300px;
+    max-width: none;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -747,9 +779,28 @@ main > .mission-section {
         padding: 0.5rem 1rem;
     }
     
+    .hero-section {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-images-left,
+    .hero-images-right {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .hero-side-image {
+        width: 120px;
+        height: 120px;
+    }
+    
     .hero-box {
         padding: 3rem 2rem;
-        width: 95%;
+        width: 100%;
+        max-width: none;
     }
     
     .hero-text {
@@ -816,10 +867,12 @@ main > .mission-section {
     .course-boxes {
         flex-direction: column;
         gap: 1.5rem;
+        padding: 1rem;
     }
     
     .course-box {
         min-width: 100%;
+        max-width: 100%;
         padding: 2rem;
     }
     
@@ -1069,13 +1122,16 @@ main > .mission-section {
     padding: 3rem 2rem;
     margin-top: 4rem;
     border-top: 3px solid var(--green);
+    width: 100%;
 }
 
 .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 2rem;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1.2fr;
     gap: 3rem;
     align-items: start;
 }
@@ -1128,6 +1184,10 @@ main > .mission-section {
 .footer-signup-title {
     font-size: 20px;
     line-height: 1.4;
+}
+
+.footer-signup {
+    max-width: 400px;
 }
 
 .footer-signup-form {
